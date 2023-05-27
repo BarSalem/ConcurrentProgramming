@@ -1,38 +1,28 @@
 package il.ac.hit.pooly;
-
-import java.util.ArrayList;
-import java.util.List;
+import java.util.concurrent.PriorityBlockingQueue;
 
 public class TasksList{
-    private List<Task> listOfTasks;
+    private PriorityBlockingQueue<Task> listOfTasks;
 
     public TasksList() {
-        this.listOfTasks = new ArrayList<>();
+        this.listOfTasks = new PriorityBlockingQueue<>();
     }
 
-    public synchronized Task getTask(){
-        return this.listOfTasks.remove(this.listOfTasks.size()-1);
-    }
-
-    public int getListLength(){
-        return this.listOfTasks.size();
-    }
-
-    private void addAndSortListOfTasks(Task task){
-        if (this.listOfTasks.size() == 0) this.listOfTasks.add(task);
-        else {
-            for (Task obj : this.listOfTasks) {
-                if (task.getPriority() <= obj.getPriority()) {
-                    int index = listOfTasks.indexOf(obj);
-                    this.listOfTasks.add(index, task);
-                    break;
-                }
-            }
+    public Task getTask(){
+        try {
+            return this.listOfTasks.take();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
         }
     }
 
-    public synchronized void addTask(Task task) {
-        this.addAndSortListOfTasks(task);
-        if (this.getListLength() == 1) notifyAll();
+    public void printTaskHighestPriority(){
+        if (this.listOfTasks.size()>0){
+            System.out.println(this.listOfTasks.element().getPriority());
+        }
+    }
+
+    public void addTask(Task task) {
+        this.listOfTasks.put(task);
     }
 }

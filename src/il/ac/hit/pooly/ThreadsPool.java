@@ -24,6 +24,5 @@ public class ThreadsPool{
 
     public void submit(Task task) {
         this.ListOfTasks.addTask(task);
-        if (this.ListOfTasks.getListLength() == 1) notify();
     }
 }

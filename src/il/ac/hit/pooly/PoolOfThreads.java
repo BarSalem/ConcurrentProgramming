@@ -22,16 +22,29 @@ public class PoolOfThreads implements Runnable{
         this.poolOfThreads = (ThreadPoolExecutor) executor;
     }
 
+    private int getAvailableThreadsNum(){
+        return this.poolOfThreads.getCorePoolSize() - this.poolOfThreads.getActiveCount();
+    }
+
     @Override
     public void run() {
-        while(true){
-            try {
-                wait();
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
+        while(true) {
+            this.listOfTasks.printTaskHighestPriority();
+            if (this.getAvailableThreadsNum() > 0) {
+                Task currTask = this.listOfTasks.getTask();
+                System.out.println("Trying to execute task with priority: " + currTask.getPriority());
+                TaskExecuter ExeTask = new TaskExecuter(currTask);
+                poolOfThreads.execute(ExeTask);
+                System.out.println("After execute task with priority: " + currTask.getPriority());
             }
-            TaskExecuter ExeTask = new TaskExecuter(this.listOfTasks.getTask());
-            poolOfThreads.submit(ExeTask);
+            else{
+                System.out.println("No available threads");
+                try {
+                    Thread.sleep(2000);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+            }
         }
     }
 }

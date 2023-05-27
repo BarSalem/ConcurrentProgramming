@@ -1,5 +1,7 @@
 package il.ac.hit.pooly;
 
+import java.util.Random;
+
 public class TaskExample implements Task{
     private int prior;
 
@@ -14,8 +16,6 @@ public class TaskExample implements Task{
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-        System.out.println("Current thread name: " + Thread.currentThread().getName() +
-                "And the Priority is: " + this.prior);
     }
 
     @Override
