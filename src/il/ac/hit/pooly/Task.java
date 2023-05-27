@@ -10,4 +10,6 @@ public interface Task extends Comparable<Task> {
         // Implement comparison logic based on priority
         return Integer.compare(other.getPriority(), this.getPriority());
     }
+
+    //+++override to string method?
 }

@@ -1,7 +1,5 @@
 package il.ac.hit.pooly;
 
-import java.util.Random;
-
 public class TaskExample implements Task{
     private int prior;
 
@@ -16,6 +14,7 @@ public class TaskExample implements Task{
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
+        System.out.println("After execute task with priority: " + this.getPriority());// don't forget to delete
     }
 
     @Override
@@ -23,7 +22,7 @@ public class TaskExample implements Task{
         this.prior=level;
     }
 
-    public int getPriority(){
+    public int getPriority(){ //should add override notation
         return this.prior;
     }
 

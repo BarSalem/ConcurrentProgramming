@@ -1,12 +1,12 @@
 package il.ac.hit.pooly;
 import java.util.concurrent.PriorityBlockingQueue;
 
-public class TasksList{
-    private PriorityBlockingQueue<Task> listOfTasks;
+public class TasksList{ //Redundant?
+    private PriorityBlockingQueue<Task> listOfTasks; //should be an instance of BlockingQueue
 
     public TasksList() {
         this.listOfTasks = new PriorityBlockingQueue<>();
-    }
+    } //Add type: <Task>
 
     public Task getTask(){
         try {
@@ -16,13 +16,13 @@ public class TasksList{
         }
     }
 
-    public void printTaskHighestPriority(){
+    public void printTaskHighestPriority(){ //don't forget to delete
         if (this.listOfTasks.size()>0){
             System.out.println(this.listOfTasks.element().getPriority());
         }
     }
 
-    public void addTask(Task task) {
+    public void addTask(Task task) { //should validate task?
         this.listOfTasks.put(task);
     }
 }
