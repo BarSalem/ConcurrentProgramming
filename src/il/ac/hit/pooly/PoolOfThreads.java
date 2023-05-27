@@ -10,11 +10,13 @@ public class PoolOfThreads implements Runnable {
     private TasksList listOfTasks;
 
     public PoolOfThreads(int numberOfThreads, TasksList listOfTasks) throws ThreadsPoolExceptions {
+        // Initialize the class using setter and TaskList object
         this.setPoolOfThreads(numberOfThreads);
         this.listOfTasks = listOfTasks;
     }
 
     public void setPoolOfThreads(int numberOfThreads) throws ThreadsPoolExceptions {
+        // Verify the numberOfThreads is bigger than 1 and creates new threads pool
         if (numberOfThreads < 1) {
             throw new ThreadsPoolExceptions("Number of threads cannot be lower than 1");
         }
@@ -23,11 +25,16 @@ public class PoolOfThreads implements Runnable {
     }
 
     private int getAvailableThreadsNum() {
+        // Getting the available threads which can take missions.
         return this.poolOfThreads.getCorePoolSize() - this.poolOfThreads.getActiveCount();
     }
 
     @Override
     public void run() {
+        /*
+        This method runs in thread, it always gets the number of available threads,
+        and then execute a task from the PriorityBlockingQueue.
+        */
         while (true) {
             this.listOfTasks.printTaskHighestPriority();
             if (this.getAvailableThreadsNum() > 0) {
