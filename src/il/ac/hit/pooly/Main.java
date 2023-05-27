@@ -6,7 +6,7 @@ public class Main {
         Random random = new Random();
         ThreadsPool t = null;
         try {
-            t = new ThreadsPool(0);
+            t = new ThreadsPool(3);
         } catch (ThreadsPoolExceptions e) {
             throw new RuntimeException(e);
         }

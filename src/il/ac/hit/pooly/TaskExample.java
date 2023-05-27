@@ -1,8 +1,6 @@
 package il.ac.hit.pooly;
 
-import java.util.Random;
-
-public class TaskExample implements Task{
+public class TaskExample implements Task{ // will be deleted (used for testing purposes only
     private int prior;
 
     public TaskExample(int priority){

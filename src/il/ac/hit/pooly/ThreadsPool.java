@@ -3,7 +3,7 @@ package il.ac.hit.pooly;
 
 public class ThreadsPool{
 
-    private TasksList ListOfTasks;
+    private TasksList listOfTasks;
     private PoolOfThreads threadsPool;
 
     public ThreadsPool(int numOfThreads) throws ThreadsPoolExceptions {
@@ -17,12 +17,33 @@ public class ThreadsPool{
 
     public void setThreadsPoolExe(int numOfThreads) throws ThreadsPoolExceptions {
         // create list of tasks and initialize instance of PoolOfThreads which manages the threads pool
-        this.ListOfTasks = new TasksList();
-        this.threadsPool = new PoolOfThreads(numOfThreads, this.ListOfTasks);
+        this.setListOfTasks(new TasksList());
+        this.setThreadsPool(new PoolOfThreads(numOfThreads, this.listOfTasks));
+    }
+
+
+    public TasksList getListOfTasks() {
+        return listOfTasks;
+    }
+
+    public PoolOfThreads getThreadsPool() {
+        return threadsPool;
+    }
+
+    public void setListOfTasks(TasksList listOfTasks) {
+        this.listOfTasks = listOfTasks;
+    }
+
+    public void setThreadsPool(PoolOfThreads threadsPool) {
+        this.threadsPool = threadsPool;
+    }
+    @Override
+    public String toString() {
+        return "This class holds list of tasks object:\n" + listOfTasks +"\nAnd Threads Pool:\n" + threadsPool;
     }
 
     public void submit(Task task) {
         // Add new task the list of tasks
-        this.ListOfTasks.addTask(task);
+        this.listOfTasks.addTask(task);
     }
 }
