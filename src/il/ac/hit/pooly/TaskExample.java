@@ -14,6 +14,8 @@ public class TaskExample implements Task{ // will be deleted (used for testing p
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
+        System.out.println("Finished to perform the task");
+        this.setPriority(10);
     }
 
     @Override
