@@ -1,7 +1,8 @@
 package il.ac.hit.pooly;
 
 /**
- * The TaskExecuter class represents a task executor that holds a Task object to trigger a 'perform' method.
+ * The TaskExecuter class represents a task executor that
+ * holds a Task object to trigger a 'perform' method.
  * It implements the Runnable interface to allow execution as a separate thread.
  */
 public class TaskExecuter implements Runnable {
@@ -23,11 +24,13 @@ public class TaskExecuter implements Runnable {
     /**
      * Returns a string representation of the TaskExecuter object.
      *
-     * @return A string describing the TaskExecuter object and its associated Task's priority.
+     * @return A string describing the TaskExecuter
+     * object and its associated Task's priority.
      */
     @Override
     public String toString() {
-        return "This class holds 'Task' object to perform with priority: " + task.getPriority();
+        return "This class holds 'Task' object to " +
+                " with priority: " + task.getPriority();
     }
 
     /**

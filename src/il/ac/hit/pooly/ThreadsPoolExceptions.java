@@ -1,7 +1,8 @@
 package il.ac.hit.pooly;
 
 /**
- * The ThreadsPoolExceptions class represents custom exceptions that can occur in a threads pool.
+ * The ThreadsPoolExceptions class represents custom
+ * exceptions that can occur in a threads pool.
  * It extends the Exception class to indicate that it is a checked exception.
  */
 public class ThreadsPoolExceptions extends Exception {
@@ -16,7 +17,8 @@ public class ThreadsPoolExceptions extends Exception {
     }
 
     /**
-     * Constructs a ThreadsPoolExceptions object with the specified error message and cause.
+     * Constructs a ThreadsPoolExceptions object
+     * with the specified error message and cause.
      *
      * @param message The error message describing the exception.
      * @param cause   The cause of the exception.

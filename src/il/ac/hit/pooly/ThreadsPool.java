@@ -12,7 +12,8 @@ public class ThreadsPool {
 
     /**
      Constructor for the ThreadsPool class.
-     Initializes the threads pool by creating an instance of PoolManager and starting it as a new thread.
+     Initializes the threads pool by creating an instance of PoolManager
+     and starting it as a new thread.
      */
     public ThreadsPool(int numOfThreads) throws ThreadsPoolExceptions {
         this.setThreadsPoolExe(numOfThreads);
@@ -21,7 +22,8 @@ public class ThreadsPool {
     }
 
     /**
-     Initializes the list of tasks and the threads pool by creating instances of TasksList and PoolManager respectively.
+     Initializes the list of tasks and the threads pool by creating instances
+     of TasksList and PoolManager respectively.
      */
     private void setThreadsPoolExe(int numOfThreads) throws ThreadsPoolExceptions {
         this.setListOfTasks(new TasksList());
@@ -61,7 +63,8 @@ public class ThreadsPool {
     */
     @Override
     public String toString() {
-        return "This class holds a list of tasks object:\n" + listOfTasks + "\nAnd a Threads Pool:\n" + threadsPool;
+        return "This class holds a list of tasks object:\n" +
+                listOfTasks + "\nAnd a Threads Pool:\n" + threadsPool;
     }
 
     /**

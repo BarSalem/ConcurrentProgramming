@@ -7,20 +7,23 @@ import java.util.concurrent.ThreadPoolExecutor;
 /**
  * The PoolManager class represents a manager for a thread pool.
  * It implements the Runnable interface to allow execution as a separate thread.
- * It redirects all the tasks to the Pool Of Threads by priority when a thread is available.
+ * It redirects all the tasks to the Pool Of Threads
+ * by priority when a thread is available.
  */
 public class PoolManager implements Runnable {
     private ThreadPoolExecutor poolOfThreads;
     private TasksList listOfTasks;
 
     /**
-     * Constructs a PoolManager object with the specified number of threads and TasksList.
+     * Constructs a PoolManager object with the specified
+     * number of threads and TasksList.
      *
      * @param numberOfThreads The number of threads in the thread pool.
      * @param listOfTasks     The TasksList object containing the tasks to be executed.
      * @throws ThreadsPoolExceptions if the number of threads is less than 1.
      */
-    public PoolManager(int numberOfThreads, TasksList listOfTasks) throws ThreadsPoolExceptions {
+    public PoolManager(int numberOfThreads, TasksList listOfTasks)
+            throws ThreadsPoolExceptions {
         this.setPoolOfThreads(numberOfThreads);
         this.setListOfTasks(listOfTasks);
     }
@@ -34,10 +37,12 @@ public class PoolManager implements Runnable {
     }
 
     /**
-     * @return Int which indicates about the number of available threads (which are ready to get a Task)
+     * @return Int which indicates about the number of
+     * available threads (which are ready to get a Task)
      */
     private int getAvailableThreadsNum() {
-        return this.poolOfThreads.getCorePoolSize() - this.poolOfThreads.getActiveCount();
+        return this.poolOfThreads.getCorePoolSize() -
+                this.poolOfThreads.getActiveCount();
     }
 
     /**
@@ -46,9 +51,11 @@ public class PoolManager implements Runnable {
      * @param numberOfThreads The number of threads in the thread pool.
      * @throws ThreadsPoolExceptions if the number of threads is less than 1.
      */
-    public void setPoolOfThreads(int numberOfThreads) throws ThreadsPoolExceptions {
+    public void setPoolOfThreads(int numberOfThreads)
+            throws ThreadsPoolExceptions {
         if (numberOfThreads < 1) {
-            throw new ThreadsPoolExceptions("Number of threads cannot be lower than 1");
+            throw new ThreadsPoolExceptions("Number of threads " +
+                    "cannot be lower than 1");
         }
         // Creating a Fixed Threads Pool
         ExecutorService executor = Executors.newFixedThreadPool(numberOfThreads);
@@ -64,12 +71,14 @@ public class PoolManager implements Runnable {
 
     @Override
     public String toString() {
-        return "This object holds the Threads Pool with: " + poolOfThreads.getCorePoolSize() + " maximum threads";
+        return "This object holds the Threads Pool with: " +
+                poolOfThreads.getCorePoolSize() + " maximum threads";
     }
 
     /**
      * Executes tasks from the TasksList in a separate thread.
-     * This method continuously checks for available threads and executes tasks if available.
+     * This method continuously checks for available
+     * threads and executes tasks if available.
      */
     @Override
     public void run() {
@@ -78,11 +87,9 @@ public class PoolManager implements Runnable {
             if (this.getAvailableThreadsNum() > 0) {
                 // Popping the task with the highest priority
                 Task currTask = this.listOfTasks.getTask();
-                System.out.println("Trying to execute task with priority: " + currTask.getPriority());
                 // Creates new TaskExecuter object with the above task, and executes it
                 // in a separated thread from the Pool.
                 poolOfThreads.execute(new TaskExecuter(currTask));
-                System.out.println("After execute task with priority: " + currTask.getPriority());
                 // For garbage collector
                 currTask = null;
             }

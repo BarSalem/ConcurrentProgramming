@@ -2,7 +2,7 @@ package il.ac.hit.pooly;
 import java.util.Random;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         Random random = new Random();
         ThreadsPool t = null;
         try {
@@ -14,7 +14,8 @@ public class Main {
             int randomInt = random.nextInt(100);
             System.out.println("Adding task with priority: " + randomInt);
             t.submit(new TaskExample(randomInt));
+            Thread.sleep(1000);
         }
-        System.out.println("Finish");
+        System.out.println("Finished the main function");
     }
 }

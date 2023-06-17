@@ -42,8 +42,14 @@ class ThreadsPoolTest {
 
     /**
      * This method tests the 'submit()' method of the ThreadsPool class.
-     * It submits tasks to the pool, waits for some time, and then asserts that the tasks'
-     * priorities have been updated correctly. and passed to the thread based on priority
+     * It submits tasks to the pool, waits for some time,
+     * and then asserts that the tasks'
+     * priorities have been updated correctly.
+     * and passed to the thread based on priority
+     * As part of the test we push 5 Tasks to the priority queue,
+     * and we verify it runs concurrently by checking all
+     * the priority of each task are updated to 10. we wait only 7seconds.
+     * If the tasks won't run concurrently, it won't be updated to 10.
      */
     @Test
     void submit() {

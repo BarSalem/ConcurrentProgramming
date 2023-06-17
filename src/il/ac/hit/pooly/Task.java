@@ -30,7 +30,8 @@ public interface Task extends Comparable<Task> {
      * This method is used for sorting tasks in a PriorityBlockingQueue.
      *
      * @param other The task to compare to.
-     * @return A negative integer, zero, or a positive integer if this task is less than, equal to,
+     * @return A negative integer, zero,
+     * or a positive integer if this task is less than, equal to,
      * or greater than the other task's priority.
      */
 

@@ -5,7 +5,8 @@ import java.util.concurrent.PriorityBlockingQueue;
 /**
  * The TasksList class represents a list of tasks to execute.
  * It uses a PriorityBlockingQueue to store the tasks based on their priority.
- * It is a thread-safe mechanism which locks the list in case of Popping and Adding new tasks.
+ * It is a thread-safe mechanism which locks the
+ * list in case of Popping and Adding new tasks.
  */
 public class TasksList {
     private PriorityBlockingQueue<Task> listOfTasks;
@@ -65,7 +66,8 @@ public class TasksList {
      * @param task The task to be added.
      */
     public void addTask(Task task) {
-        // It locks the PriorityBlockingQueue object so there won't be overriding of data while Adding and Popping tasks
+        // It locks the PriorityBlockingQueue object so there won't
+        // be overriding of data while Adding and Popping tasks
         this.listOfTasks.put(task);
     }
 }
